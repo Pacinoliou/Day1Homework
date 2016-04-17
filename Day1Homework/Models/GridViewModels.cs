@@ -10,7 +10,7 @@ namespace Day1Homework.Models
     {
         public int SeqNo {  get; set; }
 
-        public string AccType { get; set; }
+        public string AccType { get; set;  }
 
         public string RecDate { get; set; }
 
