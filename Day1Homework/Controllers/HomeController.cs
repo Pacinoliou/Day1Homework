@@ -9,23 +9,31 @@ namespace Day1Homework.Controllers
 {
     public class HomeController : Controller
     {
+
+        private SkillTreeHomeworkEntities1 db = new SkillTreeHomeworkEntities1();
+
         public ActionResult Index()
         {
-            return View();
+
+
+            return View(db.AccountBook.OrderBy(p => p.Dateee).Skip(0).Take(10).ToList());
         }
 
 
-        public ActionResult GridChildView( int objSeqNo)
+        public ActionResult GridChildView(int objSeqNo, AccountBook objAccountBook)
         {
 
-            var objGridViewModels = new GridViewModels { SeqNo = objSeqNo,
-                                                         AccType ="支出",
-                                                         RecDate = DateTime.Now.AddDays(objSeqNo - 1).ToString("yyyy/MM/dd"),
-                                                         SetMoney = 500 * objSeqNo };
+            var objGridViewModels = new GridViewModels
+            {
+                SeqNo = objSeqNo,
+                AccType = objAccountBook.Categoryyy == 0 ? "支出" : "收入",
+                RecDate = objAccountBook.Dateee.ToString("yyyy/MM/dd HH：ss"),
+                SetMoney = objAccountBook.Amounttt
+            };
 
             return View(objGridViewModels);
 
         }
-      
+
     }
 }

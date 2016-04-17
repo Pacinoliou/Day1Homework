@@ -1,4 +1,6 @@
-﻿<div class="well">
+﻿@model IEnumerable<Day1Homework.Models.AccountBook>
+
+<div class="well">
     <form class="form-horizontal">
         <div class="form-group">
             <label for="category" class="col-sm-2 control-label">類別</label>
@@ -45,12 +47,12 @@
                 <th>日期</th>
                 <th>金額</th>
             </tr>
-
-            @Html.Action("GridChildView", new { objSeqNo = 1 })
-
-            @Html.Action("GridChildView", new { objSeqNo = 2 })
-
-            @Html.Action("GridChildView", new { objSeqNo = 3 })
+             @{
+                for (int i = 0; i < Model.Count(); i++)
+                {
+                    @Html.Action("GridChildView", new { objSeqNo = i + 1, objAccountBook = Model.ElementAt(i) });
+                }
+            }
         </table>
     </div>
 </div>
