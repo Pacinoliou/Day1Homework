@@ -8,7 +8,7 @@ namespace Day1Homework.Models
 {
     public class GridViewModels
     {
-        public int SeqNo { get; set; }
+        public int SeqNo {  get; set; }
 
         public string AccType { get; set; }
 
