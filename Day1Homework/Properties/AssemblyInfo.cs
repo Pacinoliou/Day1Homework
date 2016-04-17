@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("Day1Homework")]
 [assembly: AssemblyCopyright("Copyright (C)  2016")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyCulture("")] 
 
 // ComVisible 為 false 的方式來控制，讓此組件中的類型在 
 // COM 組件中為不可見。如果您需要從
