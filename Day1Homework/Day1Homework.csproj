@@ -179,6 +179,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GridViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\InserService.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -196,7 +197,12 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\EFUnitOfWork.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\IUnitOfWork.cs" />
+    <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\InsAcbModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SkillTreeHomework.mdf" />
@@ -269,6 +275,7 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Home\GridChildView.cshtml" />
+    <Content Include="Views\Home\GridPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

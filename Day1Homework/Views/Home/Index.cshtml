@@ -1,58 +1,70 @@
-﻿@model IEnumerable<Day1Homework.Models.AccountBook>
+﻿@model Day1Homework.ViewModels.InsAcbModels
 
-<div class="well">
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label for="category" class="col-sm-2 control-label">類別</label>
-            <div class="col-sm-10">
-                <select id="category" class="form-control">
-                    <option value="" selected>請選擇</option>
-                    <option>支出</option>
-                    <option>收入</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="money" class="col-sm-2 control-label">金額</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="money" placeholder="金額">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="date" class="col-sm-2 control-label">日期</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="date" placeholder="日期">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="description" class="col-sm-2 control-label">備註</label>
-            <div class="col-sm-10">
-                <textarea class="form-control" id="description"></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-8 col-sm-4">
-                <button type="submit" class="btn btn-default">送出</button>
-            </div>
-        </div>
-    </form>
-</div>
 
-<div class="row">
-    <div class="col-md-12">
-        <table class="table table-bordered table-hover">
-            <tr>
-                <th>#</th>
-                <th>類別</th>
-                <th>日期</th>
-                <th>金額</th>
-            </tr>
-             @{
-                for (int i = 0; i < Model.Count(); i++)
-                {
-                    @Html.Action("GridChildView", new { objSeqNo = i + 1, objAccountBook = Model.ElementAt(i) });
-                }
-            }
-        </table>
+
+    @using (Ajax.BeginForm("Index", "HomeController", new AjaxOptions { UpdateTargetId = "ReLoad" }, new { @class = "form-horizontal" }))
+    {
+        <div class="well">
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <label for="category" class="col-sm-2 control-label">類別</label>
+                <div class="col-sm-10">
+                    <br />
+                    <br />
+                    @Html.DropDownListFor(M => Model.Category, new[] { new SelectListItem{ Text = "支出", Value = "0",  Selected = true },
+                                                                    new SelectListItem{ Text = "收入", Value = "1",  Selected = false }},
+                                                                    new { @class = "form-control" })
+
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="money" class="col-sm-2 control-label">金額</label>
+                <div class="col-sm-10">
+
+                    @Html.TextBoxFor(model => model.Amount, new { @class = "form-control", placeholder = "金額" })
+                    @Html.ValidationMessageFor(model => model.Amount)
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="date" class="col-sm-2 control-label">日期</label>
+                <div class="col-sm-10">
+
+                    @Html.TextBoxFor(model => model.Date, "{0:yyyy/MM/dd}", new { @class = "form-control", placeholder = "日期" })
+                    @Html.ValidationMessageFor(model => model.Date)
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description" class="col-sm-2 control-label">備註</label>
+                <div class="col-sm-10">
+
+                    @Html.TextAreaFor(model => model.Remark, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Remark)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-8 col-sm-4">
+                    <button type="submit" class="btn btn-default">送出</button>
+                </div>
+            </div>
+        </div>
+    <div id="ReLoad">
+        @Html.Action("GridPartialView")
     </div>
-</div>
+
+
+        if (TempData["message"] != null)
+        {
+            <script type="text/javascript">
+
+                        alert("@TempData["message"]");
+            </script>
+
+        }
+
+    }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
