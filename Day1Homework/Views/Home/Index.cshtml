@@ -31,7 +31,7 @@
                 <label for="date" class="col-sm-2 control-label">日期</label>
                 <div class="col-sm-10">
 
-                    @Html.TextBoxFor(model => model.Date, "{0:yyyy/MM/dd}", new { @class = "form-control", placeholder = "日期" })
+                    @Html.TextBoxFor(model => model.Date, "{0:yyyy/MM/dd}", new { @class = "form-control", placeholder = "日期-yyyy/MM/dd" })
                     @Html.ValidationMessageFor(model => model.Date)
                 </div>
             </div>
