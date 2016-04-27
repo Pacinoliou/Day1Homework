@@ -2,7 +2,7 @@
 @(Layout = null)
 <tr>
     <td>@Model.SeqNo</td>
-    <td>@Model.AccType</td>
+    <td>@Html.Raw(@Model.AccType)</td>
     <td>@Model.RecDate</td>
     <td>@Model.SetMoney</td>
 </tr>

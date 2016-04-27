@@ -52,13 +52,13 @@ namespace Day1Homework.Controllers
             var objGridViewModels = new GridViewModels
             {
                 SeqNo = objSeqNo,
-                AccType = objAccountBook.Categoryyy == 0 ? "支出" : "收入",
+                AccType = objAccountBook.Categoryyy == 0 ? "<p><font color ='#ff0000'>支出</font></p>" : "收入",
                 RecDate = objAccountBook.Dateee.ToString("yyyy/MM/dd HH：ss"),
                 SetMoney = objAccountBook.Amounttt
             };
 
             return View(objGridViewModels);
-
+            
         }
 
 
@@ -68,6 +68,13 @@ namespace Day1Homework.Controllers
             return View(db.AccountBook.OrderByDescending(p => p.Dateee).Skip(0).Take(10).ToList());
         }
 
+
+        public ActionResult ValidateDate(DateTime date, string valDateTime2)
+        {
+            bool isValidate = date.ToString("yyyy/MM/dd").CompareTo( DateTime.Now.ToString("yyyy/MM/dd")) <= 0 ;
+
+            return Json(isValidate, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }
