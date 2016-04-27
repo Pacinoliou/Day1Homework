@@ -52,7 +52,7 @@ namespace Day1Homework.Controllers
             var objGridViewModels = new GridViewModels
             {
                 SeqNo = objSeqNo,
-                AccType = objAccountBook.Categoryyy == 0 ? "<p><font color ='#ff0000'>支出</font></p>" : "收入",
+                AccType = objAccountBook.Categoryyy == 0 ? "<p><font color ='#ff0000'>支出</font></p>" : "<p><font color = '#0000ff' >收入</font></p>",
                 RecDate = objAccountBook.Dateee.ToString("yyyy/MM/dd HH：ss"),
                 SetMoney = objAccountBook.Amounttt
             };
